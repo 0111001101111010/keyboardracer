@@ -1,17 +1,31 @@
+
+
 if (Meteor.isClient) {
   // counter starts at 0
   Session.setDefault("counter", 0);
+  Session.set("words", "");
 
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get("counter");
+  Template.screen.helpers({
+    words: function () {
+      return Session.get("words");
     }
   });
 
-  Template.hello.events({
-    'click button': function () {
+  Template.app.helpers({
+    words: function () {
+      return Session.get("words");
+    }
+  });
+
+  Template.app.events({
+    'keydown input': function (e) {
       // increment the counter when button is clicked
-      Session.set("counter", Session.get("counter") + 1);
+      var key = String.fromCharCode((96 <= e.keyCode && e.keyCode <= 105)? key-48 : e.keyCode);
+      console.log("triggered", key);
+      Session.set("words", Session.get("words") + key);
+      console.log(Session.get("words"));
+      e.stopPropagation();
+      return false;
     }
   });
 }

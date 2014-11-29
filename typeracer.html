@@ -11,12 +11,17 @@
   {{> hello}}
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
-</template>
-
 <template name="app">
   <h1>Lets play!</h1>
-  
+  {{> screen}}
+  <input type="text" name="words" value={{words}} >
+</template>
+
+
+<template name="screen">
+  <h2>words typed</h2>
+  <div> <p>
+    {{words}}
+  </p></div>
+  <input type="text" name="match">
 </template>
