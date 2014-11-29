@@ -21,11 +21,19 @@ if (Meteor.isClient) {
     'keydown input': function (e) {
       // increment the counter when button is clicked
       var key = String.fromCharCode((96 <= e.keyCode && e.keyCode <= 105)? key-48 : e.keyCode);
-
       console.log("triggered", key, e.keyCode);
-      Session.set("words", Session.get("words") + key, e.keyCode);
+
+      if (e.keyCode === 13 ){
+        console.log("enter key");
+      }
+      else if (e.keyCode ===8){
+        Session.set("words", Session.get("words").slice(0,Session.get("words").length-1));
+      }
+      else {
+      Session.set("words", Session.get("words") + key);
       e.stopPropagation();
       return false;
+      }
     }
   });
 }
