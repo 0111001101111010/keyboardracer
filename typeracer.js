@@ -21,9 +21,9 @@ if (Meteor.isClient) {
     'keydown input': function (e) {
       // increment the counter when button is clicked
       var key = String.fromCharCode((96 <= e.keyCode && e.keyCode <= 105)? key-48 : e.keyCode);
-      console.log("triggered", key);
-      Session.set("words", Session.get("words") + key);
-      console.log(Session.get("words"));
+
+      console.log("triggered", key, e.keyCode);
+      Session.set("words", Session.get("words") + key, e.keyCode);
       e.stopPropagation();
       return false;
     }
